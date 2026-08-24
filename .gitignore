@@ -1,0 +1,8 @@
+# anchored to the repository root: an unanchored "build/" would also match the
+# com/paspeur/hello/build/ package directory and silently ignore our sources.
+/build/
+/.gradle/
+
+# local scratch — the author kept test data here and never committed it.
+# (is that a good idea? that is part of today's lesson.)
+/data/

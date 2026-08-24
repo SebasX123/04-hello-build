@@ -1,0 +1,2 @@
+// hello-build — the CSC 413 build-contract lab
+rootProject.name = 'hello-build'

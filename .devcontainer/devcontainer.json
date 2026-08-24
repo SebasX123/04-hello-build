@@ -1,0 +1,27 @@
+// hello-build — the development container.
+//
+// devcontainer.json is an open specification (containers.dev), not one
+// tool's config: GitHub Codespaces reads it as a service, and the Dev
+// Container CLI reads the same file on any box with Docker.
+{
+	"name": "hello-build",
+
+	// The grader's own image, on purpose. ivan>thron builds every
+	// submission on eclipse-temurin:25-jdk (see slices/common/grader/
+	// Dockerfile), so developing in here is developing on the machine that
+	// decides. Same vendor, same version, same OS -- parity by construction
+	// rather than by everyone installing carefully.
+	"image": "eclipse-temurin:25-jdk",
+
+	// The base image is a JDK, not a dev box: git is not in it.
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+
+	// Deliberately empty of anything that would set an environment
+	// variable or create a file. The four hidden inputs this lab plants
+	// must still be missing inside the container -- a container that
+	// quietly supplied GATOR_MODE or ~/.gator/secret.txt would solve the
+	// lab for you and teach the opposite lesson.
+	"postCreateCommand": "java -version"
+}

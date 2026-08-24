@@ -1,0 +1,39 @@
+plugins {
+	id 'java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+// pin the compile level and the source encoding — this part of the contract is
+// already handled for you.
+tasks.withType(JavaCompile).configureEach {
+	options.release = 25
+	options.encoding = 'UTF-8'
+}
+
+dependencies {
+	testImplementation platform('org.junit:junit-bom:5.11.3')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+	useJUnitPlatform()
+	// pin the test JVM's charset and locale too, so text formatting does not
+	// depend on how your machine happens to be configured.
+	defaultCharacterEncoding = 'UTF-8'
+	systemProperty 'user.language', 'en'
+	systemProperty 'user.country', 'US'
+	testLogging {
+		events 'passed', 'failed', 'skipped'
+		showStandardStreams = true
+	}
+}
+
+// NOTE: the four failing tests do NOT need you to touch the code under test.
+// They fail because the build depends on things that are not committed. Some
+// fixes are edits here in build.gradle (e.g. providing a value, generating a
+// file); some are elsewhere (a committed resource, the .gitignore). Find each
+// hidden input and make the repository carry it.

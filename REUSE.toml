@@ -1,0 +1,16 @@
+version = 1
+
+# Unlike a slice, this kit is authored directly rather than emitted, so nothing
+# injects SPDX headers into its sources. It ships none on purpose: each planted
+# test opens with the comment explaining the hidden input it depends on, and a
+# licence banner above that would bury the first thing a student should read.
+# Everything is therefore covered in bulk here.
+[[annotations]]
+path = [
+	"build.gradle", "settings.gradle", "gradlew", "gradlew.bat",
+	"gradle/wrapper/**", "README.md", ".gitignore", ".gitattributes",
+	".devcontainer/**", "src/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Ivan Corneillet <ivan@paspeur.com>"
+SPDX-License-Identifier = "LicenseRef-paspeur-Classroom"
