@@ -21,6 +21,7 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	environment 'GATOR_MODE', 'fast'
 	// pin the test JVM's charset and locale too, so text formatting does not
 	// depend on how your machine happens to be configured.
 	defaultCharacterEncoding = 'UTF-8'
@@ -32,6 +33,15 @@ test {
 	}
 }
 
+tasks.register('generateVersion') {
+    doLast {
+        def outputFile = file('build/generated/version.txt')
+        outputFile.parentFile.mkdirs()
+        outputFile.text = '1.0.0'
+    }
+}
+
+test.dependsOn generateVersion
 // NOTE: the four failing tests do NOT need you to touch the code under test.
 // They fail because the build depends on things that are not committed. Some
 // fixes are edits here in build.gradle (e.g. providing a value, generating a
